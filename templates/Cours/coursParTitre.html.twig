@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title%} <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Agency - Theme</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />  
+    <link rel="stylesheet" href="public/css/styles.css">{% endblock %}
+{% block body %}
+{{ form_start(form) }}
+<div class="form-row align-items-end" >
+<div class="col">
+ {{ form_row(form.titre) }}
+</div>
+ <div class="col">
+ <div class="form-group">
+ <button type="submit" class="btn btn-success">Rechercher</button>
+ </div>
+</div>
+</div>
+{{ form_end(form) }}
+  {% if cours %}
+ <table id="cours" class="table table-striped" border="4">
+ <thead>
+ <tr>
+ <th>IdCours</th>
+ <th>Titre</th>
+ <th>Description</th>
+<th>Date</th>
+
+ </tr>
+ </thead>
+ <tbody>
+ {% for cours in cours %}
+ <tr>
+ <td>{{ cours.idCours }}</td>
+ <td>{{ cours.titre }}</td>
+ <td>{{ cours.description }}</td>
+ <td>{{ cours.date|date("d-m-Y" )}}</td>
+  </tr>
+ {% endfor %}
+ </tbody>
+ </table>
+  {% else %}
+  <p>Aucun cours</p>
+  {% endif %}
+{% endblock %}

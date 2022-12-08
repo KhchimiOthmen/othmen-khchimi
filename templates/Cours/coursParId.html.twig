@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{% block title%}ListeDesCoursparId{% endblock %}
+{% block body %}
+{{ form_start(form) }}
+<div class="form-row align-items-end" > <div class="col">
+ {{ form_row(form.cours) }}
+</div>
+ <div class="col">
+ <div class="form-group">
+ <button type="submit" class="btn btn-success">Rechercher</button>
+ </div>
+</div>
+</div>
+{{ form_end(form) }}
+{% if cours %}
+ <table id="cours" class="table table-striped">
+ <thead>
+ <tr>
+ <th>idCours</th>
+ <th>titre</th>
+ <th>description</th>
+ <th>date</th>
+ <th>Actions</th>
+ </tr>
+ </thead>
+ <tbody>
+ {% for cours in cours %}
+ <tr>
+ <td>{{ cours.idCours }}</td>
+ <td>{{ cours.titre }}</td>
+ <td>{{ cours.description }}</td>
+  <td>{{ cours.date }}</td>
+ <td>
+ <a href="/cours/{{ cours.idCours }}" class="btn btn-dark">Détails</a>
+ <a href="/cours/edit/{{ cours.idCours }}" class="btn btn-dark">Modifier</a>
+ <a href="/cours/delete/{{ cours.idCours }}" class="btn btn-danger"
+ onclick="return confirm('Etes-vous sûr de supprimer ce cours?');">Supprimer</a>
+ </td>
+ </tr>
+ {% endfor %}
+ </tbody>
+ </table>
+ {% endif %}
+{% endblock %}

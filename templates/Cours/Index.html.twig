@@ -1,0 +1,55 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+
+    <!-- masonry
+================================================== -->
+    <section class="s-bricks">
+
+        <div class="masonry">
+            <div class="bricks-wrapper h-group">
+
+                <div class="grid-sizer"></div>
+
+                <div class="brick entry featured-grid animate-this">
+                    <div class="entry__content">
+                        {% for label, messages in app.flashes(['success', 'error']) %}
+                            {% for message in messages %}
+                                <div class="flash-{{ label }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+                        
+        </div>
+         <div class="text-center">
+            <h2 class="section-heading text-uppercase">Cours</h2>
+            <li class="section-subheading text-muted">
+  <a href="{{ path('affiche')}}" class="section-subheading text-muted">Liste des cours disponibles</a>
+  </li>
+  <li class="section-subheading text-muted">
+  <a href="{{ path('add')}}" class="section-subheading text-muted">Ajouter un Cours</a>
+  
+ </li>
+        
+            <li class="nav-item">
+  <a href="{{ path('cours_list')}}" class="section-subheading text-muted">Recherche par Titre</a>
+ </li>
+ <li class="nav-item">
+  <a href="{{ path('suppC',{'idCours':2})}}" class="section-subheading text-muted">Supprimer un cours</a>
+ </li>
+ <li class="nav-item">
+  <a href="{{ path('modifC',{'idCours':3})}}" class="section-subheading text-muted">Modifier un cours</a>
+ </li>
+ </div>
+                        
+
+                        
+
+    </section> <!-- end s-bricks -->
+
+{% endblock %}
