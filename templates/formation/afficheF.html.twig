@@ -1,0 +1,46 @@
+{% extends 'back.html.twig' %}
+{% block body %}
+<table border="3">
+    <tr>
+        <th>ID</th>
+        <th>TITRE</th>
+        <th>DESCRIPTION</th>
+         <th>DATE DE DEBUT</th>
+        <th>DATE DE FIN</th>
+        <th>PRIX</th>
+        <th>PLACES DISPONIBLES</th>
+        <th>NIVEAU</th>
+        <th>detail</th>
+
+        <th>action1</th>
+        <th>action3</th>
+        <th>statstique</th>
+    </tr>
+    {% for i in formation %}
+        <tr>
+            <td>{{ i.id }}</td>
+            <td>{{ i.titre }}</td>
+            <td>{{ i.description }}</td>
+            <td>{{ i.datedebut|date("d-m-Y")}}</td>
+            <td>{{ i.datefin|date("d-m-Y") }}</td>
+            <td>{{ i.prix }}</td>
+            <td>{{ i.nbplaces }}</td>
+            <td>{{ i.niveau }}</td>
+            <td><img src={{ asset('uploads/formations/'~ i.detail) }} width="50%"/> </td>
+
+            <td>  <a href="{{ path('suppC', {id: i.id}) }}" class="card-link">DELETE
+                    <i class="fas fa-user-times"></i>
+                </a> </td>
+            <td><a href="{{ path('modifC', {id: i.id}) }}" class="card-link">EDIT
+                    <i class="fas fa-user-edit"></i>
+                </a></td>
+            <td> <form action="{{ path('stat',{'id':i.id}) }}"><button style="background-color: #B0413E"> voir les statistiques </button> </form> </td>
+
+
+        </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
+
