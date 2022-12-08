@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de reclamations{% endblock %}
+
+{% block body %}
+   
+   <link href="{{ asset('../tablecss.css') }}" rel="stylesheet"/>
+    <h1> Liste de reclamations </h1>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Mail</th>
+                <th>Phone</th>
+                <th>Message</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+        
+            <tr class="active-row">
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.name }}</td>
+                <td>{{ reclamation.mail }}</td>
+                <td>{{ reclamation.phone }}</td>
+                <td>{{ reclamation.message }}</td>
+                <td>
+                    <a href="{{ path('app_recla_show', {'id': reclamation.id}) }}">show</a>
+                    <a href="{{ path('app_recla_delete', {'id': reclamation.id}) }}">Delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+{% endblock %}
+ 
+
+   
